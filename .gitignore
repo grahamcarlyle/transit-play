@@ -1,6 +1,7 @@
 *~
 .idea
 *.iml
+out
 server/out
 server/libs
 bower_components
