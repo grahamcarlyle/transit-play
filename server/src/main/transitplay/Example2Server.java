@@ -21,7 +21,7 @@ public class Example2Server {
 
     public static void main(String[] args) {
 
-        externalStaticFileLocation("/home/gcarlyle/code/hacks/transit-play/client/example2");
+        externalStaticFileLocation("client/example2");
 
         get("/getIt",(request, response) -> {
             Map<Object, Object> data = new HashMap<Object, Object>();

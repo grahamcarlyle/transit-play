@@ -12,7 +12,7 @@ public class Example3Server {
 
     public static void main(String[] args) {
 
-        externalStaticFileLocation("/home/gcarlyle/code/hacks/transit-play/client/example3");
+        externalStaticFileLocation("client/example3");
 
         get("/getIt",(request, response) -> {
             response.type("application/transit+json");

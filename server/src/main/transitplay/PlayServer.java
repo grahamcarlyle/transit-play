@@ -19,7 +19,7 @@ public class PlayServer {
 
     public static void main(String[] args) {
 
-        externalStaticFileLocation("/home/gcarlyle/code/hacks/transit-play/client/play");
+        externalStaticFileLocation("client/play");
         get("/hello",(request, response) -> {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("myTime", new Date());

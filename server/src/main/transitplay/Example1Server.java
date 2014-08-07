@@ -16,7 +16,7 @@ public class Example1Server {
 
     public static void main(String[] args) {
 
-        externalStaticFileLocation("/home/gcarlyle/code/hacks/transit-play/client/example1");
+        externalStaticFileLocation("client/example1");
 
         get("/getIt",(request, response) -> {
             Date data = new Date(0);
