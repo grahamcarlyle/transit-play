@@ -1,0 +1,32 @@
+<body>
+  <h1>Example - Reading and Writing a More Types!</h1>
+  <p>Getting and Posting...see console log</p>
+
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/transit-js/transit.js"></script>
+
+<script>
+
+var reader = transit.reader("json");
+var writer = transit.writer("json");
+
+jQuery.ajax({
+    type: "GET",
+    url: "http://localhost:4567/getIt",
+    complete: function(res) {
+        var data = reader.read(res.responseText);
+        console.log("Got uuid:" + data.get("uuid"));
+        console.log("Got bigDecimal:" + data.get("bigDecimal"));
+        console.log("Got value for key epoch:" + data.get(new Date(0)));
+        jQuery.ajax({
+            type: "POST",
+            url: "http://localhost:4567/postIt",
+            data: writer.write(data)
+        });
+    }
+});
+
+
+</script>
+</body>
+

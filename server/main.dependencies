@@ -1,0 +1,14 @@
+# Spark web framework
+mvn:com.sparkjava:spark-core:jar|sources:2.0.0
+mvn:org.slf4j:slf4j-api:jar:1.7.7
+mvn:org.slf4j:slf4j-simple:jar:1.7.2
+mvn:org.eclipse.jetty:jetty-server:jar:9.2.2.v20140723
+mvn:org.eclipse.jetty:jetty-http:jar:9.2.2.v20140723
+mvn:org.eclipse.jetty:jetty-util:jar:9.2.2.v20140723
+mvn:org.eclipse.jetty:jetty-io:jar:9.2.2.v20140723
+mvn:javax.servlet:javax.servlet-api:jar:3.1.0
+
+# Transit
+mvn:com.cognitect:transit-java:jar:0.8.241
+mvn:com.fasterxml.jackson.core:jackson-core:jar:2.3.2
+mvn:com.fasterxml.jackson.datatype:jackson-datatype-json-org:jar:2.3.2

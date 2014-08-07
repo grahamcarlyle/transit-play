@@ -1,0 +1,8 @@
+{
+    "name": "transit-play",
+    "directory": "bower_components",
+    "dependencies": {
+	"jquery": "1.11.1",
+	"transit-js": "0.8.616"
+    }
+}

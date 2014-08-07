@@ -1,0 +1,66 @@
+<body>
+  <p>Requesting...</p>
+
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/transit-js/transit.js"></script>
+<script src="./bower_components/big.js/big.min.js"></script>
+
+<script>
+var bigIntWriter = transit.makeWriteHandler({
+    tag: function(v) { return "f"; },
+    rep: function(v) { return v.toFixed(); },
+    stringRep: function(v, h) { return h.rep(v); }
+});
+
+var rdr = transit.reader("json", {
+    "handlers": {
+        "f": function(v) {
+            return Big(v);
+        }
+    }
+});
+var wtr = transit.writer("json", {
+    "handlers": transit.map([Big, bigIntWriter])
+});
+
+jQuery.ajax({
+    type: "GET",
+    url: "http://localhost:4567/farewell",
+    complete: function(res) {
+        var data = rdr.read(res.responseText);
+        console.log(data.get("myTime"));
+    }
+});
+
+jQuery.ajax({
+    type: "GET",
+    url: "http://localhost:4567/hello",
+    complete: function(res) {
+        var data = rdr.read(res.responseText);
+        console.log(data.get("myTime"));
+    }
+});
+
+jQuery.ajax({
+    type: "GET",
+    url: "http://localhost:4567/moTypes",
+    complete: function(res) {
+        var data = rdr.read(res.responseText);
+        console.log(data.toFixed());
+        console.log(data.plus(Big("343.23451")).toFixed())
+    }
+});
+
+jQuery.ajax({
+    type: "POST",
+    url: "http://localhost:4567/receive",
+    data: wtr.write({"date": new Date(),
+                     "number": Big("123.4343")}),
+    complete: function(res) {
+        console.log(res.responseText);
+    }
+});
+
+</script>
+</body>
+

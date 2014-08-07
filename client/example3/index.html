@@ -1,0 +1,45 @@
+<body>
+  <h1>Example - Reading and Writing a JavaScript Extension Type!</h1>
+  <p>Getting and Posting...see console log</p>
+
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/transit-js/transit.js"></script>
+<script src="./bower_components/big.js/big.min.js"></script>
+
+<script>
+
+var bigWriter = transit.makeWriteHandler({
+    tag: function(v) { return "f"; },
+    rep: function(v) { return v.toFixed(); },
+    stringRep: function(v, h) { return h.rep(v); }
+});
+
+var reader = transit.reader("json", {
+    "handlers": {
+        "f": function(v) { return Big(v); }
+    }
+});
+var writer = transit.writer("json", {
+    "handlers": transit.map([Big, bigWriter])
+});
+
+jQuery.ajax({
+    type: "GET",
+    url: "http://localhost:4567/getIt",
+    complete: function(res) {
+        var data = reader.read(res.responseText);
+        console.log("Got:" + data);
+        var calc = data.times(-1).div(2).plus(Big(5000));
+        console.log("I can do maths:" + calc);
+        jQuery.ajax({
+            type: "POST",
+            url: "http://localhost:4567/postIt",
+            data: writer.write(calc)
+        });
+    }
+});
+
+
+</script>
+</body>
+

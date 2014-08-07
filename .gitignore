@@ -1,0 +1,6 @@
+*~
+.idea
+*.iml
+server/out
+server/libs
+bower_components
